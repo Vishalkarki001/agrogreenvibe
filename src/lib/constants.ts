@@ -10,9 +10,8 @@ export const COMPANY = {
   description:
     "Agro Greenvibe India Pvt. Ltd. landscaping, gardening aur green-space design ke specialists hain. Ham terrace gardens se lekar large parks aur ponds tak — har green dream ko reality banate hain, sustainable aur professional tarike se.",
   foundedYear: 2018,
-  // Website par dikhne wala email (.env wale GMAIL_USER se match karta hai).
-  // Naya email aaye to yahan badal dena.
-  email: "ranveerji610@gmail.com",
+  // Website par dikhne wala email (.env wale GMAIL_USER/CONTACT_TO se match).
+  email: "agrogreenvibeindia@gmail.com",
   phone: "+91 98765 43210",
   phoneDisplay: "+91 98765 43210",
   whatsapp: "+91 98765 43210",

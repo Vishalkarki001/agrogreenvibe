@@ -52,9 +52,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${poppins.variable} h-full scroll-smooth`}
     >
-      <body className="flex min-h-full flex-col bg-white antialiased">
+      <body className="flex min-h-full flex-col antialiased">
+        {/* No-flash: theme ko paint se pehle hi set kar do */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
@@ -62,3 +65,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+// localStorage / system preference se theme turant lagata hai (FOUC se bachne ke liye)
+const THEME_SCRIPT = `(function(){try{var t=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(!t&&m)){document.documentElement.classList.add('dark');}}catch(e){}})();`;

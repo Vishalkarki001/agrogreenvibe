@@ -18,7 +18,7 @@ export default function ServiceCard({ service, coverSrc }: ServiceCardProps) {
   return (
     <Link
       href={`/services/${slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-green-200 hover:shadow-xl hover:shadow-green-900/5"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-green-200 hover:shadow-xl hover:shadow-green-900/5 dark:border-[#26332c] dark:bg-[#1a241e] dark:hover:border-green-700"
     >
       {/* Cover image */}
       <div className="relative">
@@ -32,20 +32,20 @@ export default function ServiceCard({ service, coverSrc }: ServiceCardProps) {
         />
         {/* gradient + emoji badge */}
         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 to-transparent" />
-        <span className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-xl bg-white/90 text-green-700 shadow-sm backdrop-blur-sm">
+        <span className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-xl bg-white/90 text-green-700 shadow-sm backdrop-blur-sm dark:bg-[#1a241e]/90 dark:text-green-300">
           <Icon className="h-6 w-6" aria-hidden />
         </span>
       </div>
 
       {/* Content */}
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-display text-xl font-bold text-slate-900">
+        <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
           {title}
         </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
           {excerpt}
         </p>
-        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-green-700">
+        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-green-700 dark:text-green-400">
           Learn more
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         </span>

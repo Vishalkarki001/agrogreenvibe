@@ -86,7 +86,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 eyebrow="Overview"
                 title={`Why choose our ${title.toLowerCase()}?`}
               />
-              <div className="mt-5 space-y-4 text-base leading-relaxed text-slate-600">
+              <div className="mt-5 space-y-4 text-base leading-relaxed text-slate-600 dark:text-slate-400">
                 {intro.map((para, i) => (
                   <p key={i} dangerouslySetInnerHTML={{ __html: renderBold(para) }} />
                 ))}
@@ -94,8 +94,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </Reveal>
 
             <Reveal direction="right" delay={100}>
-              <div className="rounded-2xl border border-green-100 bg-green-50/50 p-7">
-                <h3 className="font-display text-lg font-bold text-slate-900">
+              <div className="rounded-2xl border border-green-100 bg-green-50/50 p-7 dark:border-[#26332c] dark:bg-[#131d18]">
+                <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
                   What we offer
                 </h3>
                 <ul className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -104,7 +104,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                       <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-600 text-white">
                         <Check className="h-3.5 w-3.5" strokeWidth={3} />
                       </span>
-                      <span className="text-sm leading-relaxed text-slate-700">
+                      <span className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                         {feature}
                       </span>
                     </li>
@@ -124,7 +124,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
       {/* Alternating image + content showcase — har row me 2 images */}
       {showcasePairs.length > 0 && (
-        <section className="bg-green-50/50 py-16 lg:py-20">
+        <section className="bg-green-50/50 py-16 lg:py-20 dark:bg-[#131d18]">
           <Container>
             <Reveal>
               <SectionHeading
@@ -183,10 +183,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                       <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-700 text-white shadow-sm shadow-green-700/25">
                         <Icon className="h-7 w-7" />
                       </span>
-                      <h3 className="mt-5 font-display text-2xl font-bold text-slate-900 sm:text-3xl">
+                      <h3 className="mt-5 font-display text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl">
                         {h.title}
                       </h3>
-                      <p className="mt-3 text-base leading-relaxed text-slate-600">
+                      <p className="mt-3 text-base leading-relaxed text-slate-600 dark:text-slate-400">
                         {h.description}
                       </p>
                     </Reveal>
@@ -219,7 +219,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       )}
 
       {/* Other services */}
-      <section className="bg-green-50/50 py-16 lg:py-20">
+      <section className="bg-green-50/50 py-16 lg:py-20 dark:bg-[#131d18]">
         <Container>
           <Reveal>
             <SectionHeading centered eyebrow="Explore More" title="Other Services" />
@@ -231,12 +231,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 <Reveal key={s.slug} direction="up" delay={(i % 3) * 80}>
                   <Link
                     href={`/services/${s.slug}`}
-                    className="group flex items-center gap-4 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-green-900/5"
+                    className="group flex items-center gap-4 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-green-900/5 dark:bg-[#1a241e] dark:ring-[#26332c]"
                   >
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-700 transition-colors group-hover:bg-green-700 group-hover:text-white">
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-700 transition-colors group-hover:bg-green-700 group-hover:text-white dark:bg-green-900/40 dark:text-green-300">
                       <Icon className="h-6 w-6" />
                     </span>
-                    <span className="flex-1 font-display font-bold text-slate-900">
+                    <span className="flex-1 font-display font-bold text-slate-900 dark:text-white">
                       {s.title}
                     </span>
                     <ArrowUpRight className="h-5 w-5 text-green-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -261,6 +261,6 @@ function renderBold(text: string): string {
     .replace(/>/g, "&gt;");
   return escaped.replace(
     /\*\*(.+?)\*\*/g,
-    '<strong class="font-semibold text-slate-800">$1</strong>'
+    '<strong class="font-semibold text-slate-800 dark:text-slate-200">$1</strong>'
   );
 }

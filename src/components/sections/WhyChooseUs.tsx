@@ -23,15 +23,15 @@ export default function WhyChooseUs() {
             const Icon = feature.icon;
             return (
               <Reveal key={feature.title} delay={(i % 3) * 100}>
-                <div className="group flex h-full gap-5 rounded-2xl border border-slate-100 bg-white p-6 transition-all duration-300 hover:border-green-200 hover:shadow-lg hover:shadow-green-900/5">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-700 transition-colors duration-300 group-hover:bg-green-700 group-hover:text-white">
+                <div className="group flex h-full gap-5 rounded-2xl border border-slate-100 bg-white p-6 transition-all duration-300 hover:border-green-200 hover:shadow-lg hover:shadow-green-900/5 dark:border-[#26332c] dark:bg-[#1a241e] dark:hover:border-green-700">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-700 transition-colors duration-300 group-hover:bg-green-700 group-hover:text-white dark:bg-green-900/40 dark:text-green-300">
                     <Icon className="h-6 w-6" aria-hidden />
                   </span>
                   <div>
-                    <h3 className="font-display text-lg font-bold text-slate-900">
+                    <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
                       {feature.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
+                    <p className="mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                       {feature.description}
                     </p>
                   </div>

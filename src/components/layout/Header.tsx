@@ -1,7 +1,7 @@
 "use client";
 
 // Site header: logo + brand wordmark, desktop navigation (Services par dropdown),
-// phone CTA aur mobile slide-down menu. Scroll par halki shadow aati hai.
+// theme toggle, phone CTA aur mobile slide-down menu. Scroll par halki shadow.
 
 import Link from "next/link";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { COMPANY, NAV_LINKS } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function Header() {
   const pathname = usePathname();
@@ -25,7 +26,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Route badalte hi sab menus band karo
   useEffect(() => {
     setOpen(false);
     setServicesOpen(false);
@@ -39,8 +39,10 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full bg-white transition-shadow duration-300 ${
-        scrolled ? "shadow-md shadow-slate-900/5" : "border-b border-slate-100"
+      className={`sticky top-0 z-50 w-full bg-white transition-shadow duration-300 dark:bg-[#1a241e] ${
+        scrolled
+          ? "shadow-md shadow-slate-900/5 dark:shadow-black/30"
+          : "border-b border-slate-100 dark:border-[#26332c]"
       }`}
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -55,10 +57,10 @@ export default function Header() {
             className="h-11 w-11 rounded-lg object-cover"
           />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-extrabold tracking-tight text-slate-900">
-              Agro <span className="text-green-700">Greenvibe</span>
+            <span className="font-display text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">
+              Agro <span className="text-green-700 dark:text-green-400">Greenvibe</span>
             </span>
-            <span className="mt-0.5 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-amber-600">
+            <span className="mt-0.5 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-amber-600 dark:text-amber-500">
               India Pvt. Ltd.
             </span>
           </span>
@@ -68,7 +70,6 @@ export default function Header() {
         <ul className="hidden items-center gap-1 lg:flex">
           {NAV_LINKS.map((link) =>
             link.href === "/services" ? (
-              // ---- Services dropdown ----
               <li
                 key={link.href}
                 className="relative"
@@ -79,8 +80,8 @@ export default function Header() {
                   onClick={() => setServicesOpen((v) => !v)}
                   className={`flex items-center gap-1 rounded-full px-4 py-2 text-[0.95rem] font-medium transition-colors ${
                     isActive(link.href)
-                      ? "text-green-700"
-                      : "text-slate-700 hover:text-green-700"
+                      ? "text-green-700 dark:text-green-400"
+                      : "text-slate-700 hover:text-green-700 dark:text-slate-300 dark:hover:text-green-400"
                   }`}
                   aria-expanded={servicesOpen}
                   aria-haspopup="true"
@@ -93,7 +94,6 @@ export default function Header() {
                   />
                 </button>
 
-                {/* Dropdown panel */}
                 <div
                   className={`absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3 transition-all duration-200 ${
                     servicesOpen
@@ -101,19 +101,19 @@ export default function Header() {
                       : "invisible translate-y-1 opacity-0"
                   }`}
                 >
-                  <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white p-2 shadow-xl shadow-slate-900/10">
+                  <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white p-2 shadow-xl shadow-slate-900/10 dark:border-[#26332c] dark:bg-[#1a241e] dark:shadow-black/40">
                     {SERVICES.map((s) => {
                       const Icon = s.icon;
                       return (
                         <Link
                           key={s.slug}
                           href={`/services/${s.slug}`}
-                          className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-green-50"
+                          className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-green-50 dark:hover:bg-white/5"
                         >
-                          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-green-50 text-green-700">
+                          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-green-50 text-green-700 dark:bg-green-900/40 dark:text-green-300">
                             <Icon className="h-5 w-5" />
                           </span>
-                          <span className="text-sm font-medium text-slate-700">
+                          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                             {s.title}
                           </span>
                         </Link>
@@ -134,8 +134,8 @@ export default function Header() {
                   href={link.href}
                   className={`relative rounded-full px-4 py-2 text-[0.95rem] font-medium transition-colors ${
                     isActive(link.href)
-                      ? "text-green-700"
-                      : "text-slate-700 hover:text-green-700"
+                      ? "text-green-700 dark:text-green-400"
+                      : "text-slate-700 hover:text-green-700 dark:text-slate-300 dark:hover:text-green-400"
                   }`}
                 >
                   {link.label}
@@ -149,12 +149,13 @@ export default function Header() {
         </ul>
 
         {/* Desktop CTA */}
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
+          <ThemeToggle />
           <a
             href={phoneHref}
-            className="flex items-center gap-2 text-sm font-semibold text-slate-700 transition-colors hover:text-green-700"
+            className="flex items-center gap-2 text-sm font-semibold text-slate-700 transition-colors hover:text-green-700 dark:text-slate-300 dark:hover:text-green-400"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-50 text-green-700">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green-50 text-green-700 dark:bg-green-900/40 dark:text-green-300">
               <Phone className="h-4 w-4" />
             </span>
             {COMPANY.phoneDisplay}
@@ -167,31 +168,33 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-700 transition-colors hover:bg-slate-100 lg:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        {/* Mobile: theme toggle + hamburger */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
       <div
-        className={`overflow-hidden border-t border-slate-100 bg-white transition-[max-height] duration-300 ease-in-out lg:hidden ${
-          open ? "max-h-[34rem]" : "max-h-0"
+        className={`overflow-hidden border-t border-slate-100 bg-white transition-[max-height] duration-300 ease-in-out lg:hidden dark:border-[#26332c] dark:bg-[#1a241e] ${
+          open ? "max-h-136" : "max-h-0"
         }`}
       >
         <ul className="flex flex-col gap-1 px-4 py-4">
           {NAV_LINKS.map((link) =>
             link.href === "/services" ? (
               <li key={link.href}>
-                {/* Services + expandable list */}
                 <button
                   onClick={() => setMobileServicesOpen((v) => !v)}
-                  className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-50"
+                  className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-white/5"
                   aria-expanded={mobileServicesOpen}
                 >
                   Services
@@ -206,19 +209,19 @@ export default function Header() {
                     mobileServicesOpen ? "max-h-96" : "max-h-0"
                   }`}
                 >
-                  <div className="ml-3 flex flex-col gap-0.5 border-l-2 border-green-100 pl-3 pt-1">
+                  <div className="ml-3 flex flex-col gap-0.5 border-l-2 border-green-100 pl-3 pt-1 dark:border-[#26332c]">
                     {SERVICES.map((s) => (
                       <Link
                         key={s.slug}
                         href={`/services/${s.slug}`}
-                        className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-green-50 hover:text-green-700"
+                        className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-green-50 hover:text-green-700 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-green-300"
                       >
                         {s.title}
                       </Link>
                     ))}
                     <Link
                       href="/services"
-                      className="rounded-lg px-3 py-2 text-sm font-semibold text-green-700 hover:bg-green-50"
+                      className="rounded-lg px-3 py-2 text-sm font-semibold text-green-700 hover:bg-green-50 dark:text-green-400 dark:hover:bg-white/5"
                     >
                       View All Services →
                     </Link>
@@ -231,8 +234,8 @@ export default function Header() {
                   href={link.href}
                   className={`block rounded-lg px-4 py-3 text-base font-medium transition-colors ${
                     isActive(link.href)
-                      ? "bg-green-50 text-green-700"
-                      : "text-slate-700 hover:bg-slate-50"
+                      ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                      : "text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-white/5"
                   }`}
                 >
                   {link.label}
@@ -243,7 +246,7 @@ export default function Header() {
           <li className="mt-2 flex flex-col gap-3 px-1">
             <a
               href={phoneHref}
-              className="flex items-center justify-center gap-2 rounded-full border-2 border-green-700 px-6 py-3 text-sm font-semibold text-green-800"
+              className="flex items-center justify-center gap-2 rounded-full border-2 border-green-700 px-6 py-3 text-sm font-semibold text-green-800 dark:border-green-500 dark:text-green-300"
             >
               <Phone className="h-4 w-4" />
               {COMPANY.phoneDisplay}

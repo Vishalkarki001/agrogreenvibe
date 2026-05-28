@@ -45,7 +45,7 @@ export default function SmartImage({
 
   return (
     <div
-      className={`relative w-full overflow-hidden ${rounded} bg-green-50 ${className}`}
+      className={`relative w-full overflow-hidden ${rounded} bg-green-50 dark:bg-[#131d18] ${className}`}
     >
       {!failed ? (
         <Image
@@ -59,7 +59,7 @@ export default function SmartImage({
         />
       ) : (
         // ---- Fallback placeholder (jab tak asli image na ho) ----
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-linear-to-br from-green-100 via-emerald-50 to-amber-50">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-linear-to-br from-green-100 via-emerald-50 to-amber-50 dark:from-[#1a241e] dark:via-[#1a241e] dark:to-[#0f1613]">
           {/* subtle dotted texture */}
           <div
             className="absolute inset-0 opacity-[0.06]"

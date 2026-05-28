@@ -11,7 +11,7 @@ export default function CTASection() {
     <section className="py-16 lg:py-20">
       <Container>
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-green-800 px-6 py-14 text-center sm:px-12 lg:py-16">
+          <div className="relative overflow-hidden rounded-3xl bg-green-800 px-6 py-14 text-center sm:px-12 lg:py-16 dark:bg-[#16201b] dark:ring-1 dark:ring-[#26332c]">
             {/* decorative pattern */}
             <div
               className="pointer-events-none absolute inset-0 opacity-10"

@@ -22,8 +22,8 @@ export default function Testimonials() {
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {TESTIMONIALS.map((t, i) => (
             <Reveal key={t.id} delay={(i % 4) * 90}>
-              <figure className="flex h-full flex-col rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-green-900/5">
-                <Quote className="h-8 w-8 text-green-200" aria-hidden />
+              <figure className="flex h-full flex-col rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg hover:shadow-green-900/5 dark:border-[#26332c] dark:bg-[#1a241e]">
+                <Quote className="h-8 w-8 text-green-200 dark:text-green-800" aria-hidden />
                 <div className="mt-3 flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, idx) => (
                     <Star
@@ -36,16 +36,16 @@ export default function Testimonials() {
                     />
                   ))}
                 </div>
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-700">
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-5 flex items-center gap-3 border-t border-slate-100 pt-4">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-green-100 font-display text-lg font-bold text-green-700">
+                <figcaption className="mt-5 flex items-center gap-3 border-t border-slate-100 pt-4 dark:border-[#26332c]">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-green-100 font-display text-lg font-bold text-green-700 dark:bg-green-900/40 dark:text-green-300">
                     {t.name.charAt(0)}
                   </span>
                   <div>
-                    <p className="font-semibold text-slate-900">{t.name}</p>
-                    <p className="text-xs text-slate-500">
+                    <p className="font-semibold text-slate-900 dark:text-white">{t.name}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       {t.role} • {t.location}
                     </p>
                   </div>

@@ -26,10 +26,10 @@ export default function ContactPage() {
         <Container className="grid gap-10 lg:grid-cols-2">
           {/* Left — contact info */}
           <Reveal>
-            <h2 className="font-display text-2xl font-bold text-slate-900">
+            <h2 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
               Get In Touch
             </h2>
-            <p className="mt-3 leading-relaxed text-slate-600">
+            <p className="mt-3 leading-relaxed text-slate-600 dark:text-slate-400">
               Whether it&apos;s a cozy terrace garden or a sprawling park, we&apos;re
               here to help. Use any of the options below or fill out the form.
             </p>
@@ -38,15 +38,15 @@ export default function ContactPage() {
               {CONTACT_DETAILS.map((detail) => {
                 const Icon = detail.icon;
                 const content = (
-                  <div className="flex h-full gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-700">
+                  <div className="flex h-full gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-md dark:border-[#26332c] dark:bg-[#1a241e]">
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-700 dark:bg-green-900/40 dark:text-green-300">
                       <Icon className="h-6 w-6" />
                     </span>
                     <div>
-                      <p className="text-sm font-semibold text-slate-900">
+                      <p className="text-sm font-semibold text-slate-900 dark:text-white">
                         {detail.label}
                       </p>
-                      <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                      <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                         {detail.value}
                       </p>
                     </div>
@@ -63,7 +63,7 @@ export default function ContactPage() {
             </div>
 
             {/* Map */}
-            <div className="mt-6 overflow-hidden rounded-2xl border border-slate-100 shadow-sm">
+            <div className="mt-6 overflow-hidden rounded-2xl border border-slate-100 shadow-sm dark:border-[#26332c]">
               <iframe
                 title={`${COMPANY.shortName} location map`}
                 src="https://maps.google.com/maps?q=Rudrapur%2C%20Udham%20Singh%20Nagar%2C%20Uttarakhand&t=&z=13&ie=UTF8&iwloc=&output=embed"

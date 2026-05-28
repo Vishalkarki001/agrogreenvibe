@@ -47,14 +47,14 @@ export default function ContactForm() {
   // ---- Success state ----
   if (status === "success") {
     return (
-      <div className="flex h-full flex-col items-center justify-center rounded-2xl border border-green-100 bg-green-50/60 p-10 text-center">
+      <div className="flex h-full flex-col items-center justify-center rounded-2xl border border-green-100 bg-green-50/60 p-10 text-center dark:border-[#26332c] dark:bg-[#131d18]">
         <span className="animate-fade-up flex h-16 w-16 items-center justify-center rounded-full bg-green-600 text-white">
           <CheckCircle2 className="h-9 w-9" />
         </span>
-        <h3 className="mt-5 font-display text-2xl font-bold text-slate-900">
+        <h3 className="mt-5 font-display text-2xl font-bold text-slate-900 dark:text-white">
           Message Sent! 🌿
         </h3>
-        <p className="mt-2 max-w-sm text-slate-600">
+        <p className="mt-2 max-w-sm text-slate-600 dark:text-slate-400">
           Thank you for reaching out. Your enquiry has been received and our team
           will get back to you within 24 hours.
         </p>
@@ -73,12 +73,12 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8"
+      className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8 dark:border-[#26332c] dark:bg-[#1a241e]"
     >
-      <h3 className="font-display text-xl font-bold text-slate-900">
+      <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
         Send Us a Message
       </h3>
-      <p className="mt-1 text-sm text-slate-500">
+      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
         Fill in the form and we&apos;ll get back to you shortly.
       </p>
 
@@ -120,7 +120,7 @@ export default function ContactForm() {
       </div>
 
       {status === "error" && (
-        <div className="mt-4 flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+        <div className="mt-4 flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700 dark:border-red-900/50 dark:bg-red-950/40 dark:text-red-300">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{errorMsg}</span>
         </div>
@@ -148,7 +148,7 @@ export default function ContactForm() {
 }
 
 const inputClass =
-  "w-full rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-3 text-sm text-slate-800 outline-none transition-colors placeholder:text-slate-400 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-500/20";
+  "w-full rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-3 text-sm text-slate-800 outline-none transition-colors placeholder:text-slate-400 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-500/20 dark:border-[#26332c] dark:bg-[#131d18] dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:bg-[#1a241e]";
 
 function Field({
   label,
@@ -161,7 +161,7 @@ function Field({
 }) {
   return (
     <label htmlFor={htmlFor} className="block">
-      <span className="mb-1.5 block text-sm font-medium text-slate-700">
+      <span className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
         {label}
       </span>
       {children}

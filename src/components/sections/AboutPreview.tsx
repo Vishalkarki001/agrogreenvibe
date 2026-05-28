@@ -23,7 +23,7 @@ interface AboutPreviewProps {
 
 export default function AboutPreview({ image1, image2 }: AboutPreviewProps) {
   return (
-    <section className="bg-green-50/60 py-20 lg:py-24">
+    <section className="bg-green-50/60 py-20 lg:py-24 dark:bg-[#131d18]">
       <Container className="grid items-center gap-12 lg:grid-cols-2">
         {/* Images */}
         <Reveal direction="left" className="relative">
@@ -63,10 +63,12 @@ export default function AboutPreview({ image1, image2 }: AboutPreviewProps) {
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
             {points.map((point) => (
               <li key={point} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-700">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300">
                   <Check className="h-4 w-4" strokeWidth={3} />
                 </span>
-                <span className="text-sm leading-relaxed text-slate-700">{point}</span>
+                <span className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                  {point}
+                </span>
               </li>
             ))}
           </ul>

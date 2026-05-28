@@ -6,7 +6,7 @@ import { STATS } from "@/lib/data";
 
 export default function StatsBar() {
   return (
-    <section className="bg-green-800">
+    <section className="bg-green-800 dark:bg-[#131d18]">
       <Container className="py-12">
         <dl className="grid grid-cols-2 gap-8 lg:grid-cols-4">
           {STATS.map((stat, i) => {

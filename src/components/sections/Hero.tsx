@@ -13,7 +13,7 @@ interface HeroProps {
 
 export default function Hero({ imageSrc }: HeroProps) {
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-green-50/80 to-white">
+    <section className="relative overflow-hidden bg-linear-to-b from-green-50/80 to-white dark:from-transparent dark:to-transparent">
       {/* Background dotted pattern */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -31,7 +31,7 @@ export default function Hero({ imageSrc }: HeroProps) {
         {/* Left — text */}
         <div>
           <span
-            className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-green-200 bg-white px-4 py-1.5 text-sm font-semibold text-green-700 shadow-sm"
+            className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-green-200 bg-white px-4 py-1.5 text-sm font-semibold text-green-700 shadow-sm dark:border-green-900 dark:bg-slate-800 dark:text-green-300"
             style={{ animationDelay: "0ms" }}
           >
             <Leaf className="h-4 w-4 text-amber-500" />
@@ -39,11 +39,11 @@ export default function Hero({ imageSrc }: HeroProps) {
           </span>
 
           <h1
-            className="animate-fade-up mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+            className="animate-fade-up mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white"
             style={{ animationDelay: "80ms" }}
           >
             Creating{" "}
-            <span className="relative whitespace-nowrap text-green-700">
+            <span className="relative whitespace-nowrap text-green-700 dark:text-green-400">
               Beautiful
               <svg
                 className="absolute -bottom-2 left-0 w-full"
@@ -63,12 +63,12 @@ export default function Hero({ imageSrc }: HeroProps) {
           </h1>
 
           <p
-            className="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-slate-600"
+            className="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-slate-600 dark:text-slate-400"
             style={{ animationDelay: "160ms" }}
           >
-            From <strong className="font-semibold text-slate-800">landscaping</strong> and{" "}
-            <strong className="font-semibold text-slate-800">terrace gardens</strong> to{" "}
-            <strong className="font-semibold text-slate-800">parks &amp; ponds</strong> — we design,
+            From <strong className="font-semibold text-slate-800 dark:text-slate-200">landscaping</strong> and{" "}
+            <strong className="font-semibold text-slate-800 dark:text-slate-200">terrace gardens</strong> to{" "}
+            <strong className="font-semibold text-slate-800 dark:text-slate-200">parks &amp; ponds</strong> — we design,
             build and maintain outdoor spaces that bring nature closer to you.
           </p>
 
@@ -95,8 +95,8 @@ export default function Hero({ imageSrc }: HeroProps) {
                 <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400" />
               ))}
             </div>
-            <p className="text-sm text-slate-600">
-              <strong className="font-bold text-slate-900">950+</strong> happy clients across{" "}
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              <strong className="font-bold text-slate-900 dark:text-white">950+</strong> happy clients across{" "}
               {COMPANY.city}
             </p>
           </div>
@@ -115,21 +115,21 @@ export default function Hero({ imageSrc }: HeroProps) {
           />
 
           {/* Floating card — top */}
-          <div className="animate-float absolute -left-4 top-8 hidden rounded-2xl bg-white p-4 shadow-xl shadow-green-900/10 sm:block">
+          <div className="animate-float absolute -left-4 top-8 hidden rounded-2xl bg-white p-4 shadow-xl shadow-green-900/10 dark:bg-[#1a241e] sm:block">
             <div className="flex items-center gap-3">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-2xl">
                 🌳
               </span>
               <div>
-                <p className="font-display text-xl font-extrabold text-slate-900">1,200+</p>
-                <p className="text-xs text-slate-500">Projects done</p>
+                <p className="font-display text-xl font-extrabold text-slate-900 dark:text-white">1,200+</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Projects done</p>
               </div>
             </div>
           </div>
 
           {/* Floating card — bottom */}
           <div
-            className="animate-float absolute -right-4 bottom-8 hidden rounded-2xl bg-white p-4 shadow-xl shadow-green-900/10 sm:block"
+            className="animate-float absolute -right-4 bottom-8 hidden rounded-2xl bg-white p-4 shadow-xl shadow-green-900/10 dark:bg-[#1a241e] sm:block"
             style={{ animationDelay: "1.5s" }}
           >
             <div className="flex items-center gap-3">
@@ -137,8 +137,8 @@ export default function Hero({ imageSrc }: HeroProps) {
                 🌱
               </span>
               <div>
-                <p className="font-display text-xl font-extrabold text-slate-900">100%</p>
-                <p className="text-xs text-slate-500">Eco-friendly</p>
+                <p className="font-display text-xl font-extrabold text-slate-900 dark:text-white">100%</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Eco-friendly</p>
               </div>
             </div>
           </div>

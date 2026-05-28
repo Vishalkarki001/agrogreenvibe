@@ -24,7 +24,7 @@ export default function PageHero({
   crumbs = [],
 }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-green-800">
+    <section className="relative overflow-hidden bg-green-800 dark:bg-[#0e1512]">
       {/* pattern + glow */}
       <div
         className="pointer-events-none absolute inset-0 opacity-10"

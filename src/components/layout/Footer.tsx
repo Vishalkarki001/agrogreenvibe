@@ -19,7 +19,7 @@ export default function Footer() {
   const phoneHref = `tel:${COMPANY.phone.replace(/\s/g, "")}`;
 
   return (
-    <footer className="bg-green-950 text-green-100/80">
+    <footer className="bg-green-950 text-green-100/80 dark:bg-[#0b110e]">
       {/* Top accent line */}
       <div className="h-1 w-full bg-linear-to-r from-green-600 via-amber-500 to-green-600" />
 

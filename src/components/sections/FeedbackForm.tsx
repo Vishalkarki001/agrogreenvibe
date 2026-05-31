@@ -1,16 +1,14 @@
 "use client";
 
-// Contact form — /api/contact par POST karta hai (Gmail SMTP backend).
-// User name/email/phone/service/message bharta hai aur submit karte hi enquiry
-// business inbox par chali jati hai. Loading / success / error states handle hain.
+// Feedback form — sirf 2 fields: email + message. /api/feedback par POST
+// karta hai (Gmail SMTP backend). Loading / success / error states handle hain.
 
 import { useState, type FormEvent } from "react";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
-import { SERVICES } from "@/lib/services";
+import { Send, CheckCircle2, AlertCircle, MessageSquareHeart } from "lucide-react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export default function ContactForm() {
+export default function FeedbackForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -19,18 +17,14 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
     const payload = {
-      name: String(fd.get("name") || ""),
       email: String(fd.get("email") || ""),
-      phone: String(fd.get("phone") || ""),
-      address: String(fd.get("address") || ""),
-      service: String(fd.get("service") || ""),
       message: String(fd.get("message") || ""),
     };
 
     setStatus("loading");
     setErrorMsg("");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -45,7 +39,6 @@ export default function ContactForm() {
     }
   }
 
-  // ---- Success state ----
   if (status === "success") {
     return (
       <div className="flex h-full flex-col items-center justify-center rounded-2xl border border-green-100 bg-green-50/60 p-10 text-center dark:border-[#26332c] dark:bg-[#131d18]">
@@ -53,17 +46,17 @@ export default function ContactForm() {
           <CheckCircle2 className="h-9 w-9" />
         </span>
         <h3 className="mt-5 font-display text-2xl font-bold text-slate-900 dark:text-white">
-          Message Sent! 🌿
+          Thank You! 🌿
         </h3>
         <p className="mt-2 max-w-sm text-slate-600 dark:text-slate-400">
-          Thank you for reaching out. Your enquiry has been received and our team
-          will get back to you within 24 hours.
+          Your feedback has been received. We really appreciate you taking the
+          time to share your thoughts with us.
         </p>
         <button
           onClick={() => setStatus("idle")}
-          className="mt-6 text-sm font-semibold text-green-700 hover:text-green-800"
+          className="mt-6 text-sm font-semibold text-green-700 hover:text-green-800 dark:text-green-400"
         >
-          Send another message
+          Send another feedback
         </button>
       </div>
     );
@@ -76,59 +69,43 @@ export default function ContactForm() {
       onSubmit={handleSubmit}
       className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8 dark:border-[#26332c] dark:bg-[#1a241e]"
     >
-      <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
-        Send Us a Message
-      </h3>
-      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-        Fill in the form and we&apos;ll get back to you shortly.
-      </p>
-
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <Field label="Full Name" htmlFor="name">
-          <input id="name" name="name" type="text" required placeholder="Your name" className={inputClass} />
-        </Field>
-        <Field label="Phone" htmlFor="phone">
-          <input id="phone" name="phone" type="tel" required placeholder="+91 ..." className={inputClass} />
-        </Field>
+      <div className="flex items-center gap-3">
+        <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-700 dark:bg-green-900/40 dark:text-green-300">
+          <MessageSquareHeart className="h-5 w-5" />
+        </span>
+        <div>
+          <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+            Share Your Feedback
+          </h3>
+          <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+            Help us grow — your thoughts mean a lot to us.
+          </p>
+        </div>
       </div>
 
-      <div className="mt-4">
-        <Field label="Email" htmlFor="email">
-          <input id="email" name="email" type="email" required placeholder="you@example.com" className={inputClass} />
-        </Field>
-      </div>
-
-      <div className="mt-4">
-        <Field label="Address (Optional)" htmlFor="address">
+      <div className="mt-6">
+        <Field label="Your Email" htmlFor="fb-email">
           <input
-            id="address"
-            name="address"
-            type="text"
-            placeholder="Your address (optional)"
+            id="fb-email"
+            name="email"
+            type="email"
+            required
+            placeholder="you@example.com"
             className={inputClass}
           />
         </Field>
       </div>
 
       <div className="mt-4">
-        <Field label="Service Needed" htmlFor="service">
-          <select id="service" name="service" className={inputClass} defaultValue="">
-            <option value="" disabled>
-              Select a service
-            </option>
-            {SERVICES.map((s) => (
-              <option key={s.slug} value={s.title}>
-                {s.title}
-              </option>
-            ))}
-            <option value="General Enquiry">General Enquiry</option>
-          </select>
-        </Field>
-      </div>
-
-      <div className="mt-4">
-        <Field label="Message" htmlFor="message">
-          <textarea id="message" name="message" rows={4} required placeholder="Tell us about your project..." className={`${inputClass} resize-none`} />
+        <Field label="Your Feedback" htmlFor="fb-message">
+          <textarea
+            id="fb-message"
+            name="message"
+            rows={5}
+            required
+            placeholder="Tell us what you think — what worked, what could be better..."
+            className={`${inputClass} resize-none`}
+          />
         </Field>
       </div>
 
@@ -151,7 +128,7 @@ export default function ContactForm() {
           </>
         ) : (
           <>
-            Send Message
+            Send Feedback
             <Send className="h-4 w-4" />
           </>
         )}

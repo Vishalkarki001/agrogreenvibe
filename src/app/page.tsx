@@ -18,7 +18,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Hero imageSrc={imgs[1] ?? imgs[0]} />
+      <Hero imageSrc="/services/landscaping/hero.jpeg" />
       <StatsBar />
       <ServicesOverview />
       <AboutPreview image1={imgs[4] ?? imgs[0]} image2={imgs[8] ?? imgs[1]} />

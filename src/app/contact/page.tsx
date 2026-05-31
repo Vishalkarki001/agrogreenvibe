@@ -42,11 +42,13 @@ export default function ContactPage() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-700 dark:bg-green-900/40 dark:text-green-300">
                       <Icon className="h-6 w-6" />
                     </span>
-                    <div>
+                    {/* min-w-0 flex-1 zaroori hai — warna lambi email/address card ke
+                        bahar nikal jaati hai. break-words se long strings wrap hoti hain. */}
+                    <div className="min-w-0 flex-1">
                       <p className="text-sm font-semibold text-slate-900 dark:text-white">
                         {detail.label}
                       </p>
-                      <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                      <p className="mt-1 wrap-break-word text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                         {detail.value}
                       </p>
                     </div>

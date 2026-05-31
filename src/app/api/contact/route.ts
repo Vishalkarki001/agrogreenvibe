@@ -20,6 +20,7 @@ interface ContactPayload {
   name?: string;
   email?: string;
   phone?: string;
+  address?: string;
   service?: string;
   message?: string;
 }
@@ -35,10 +36,11 @@ export async function POST(request: Request) {
   const name = data.name?.trim();
   const email = data.email?.trim();
   const phone = data.phone?.trim();
+  const address = data.address?.trim(); // optional
   const service = data.service?.trim() || "General Enquiry";
   const message = data.message?.trim();
 
-  // Basic validation
+  // Basic validation — Name, Email, Phone, Message mandatory. Address optional.
   if (!name || !email || !phone || !message) {
     return NextResponse.json(
       { error: "Please fill in all required fields." },
@@ -80,11 +82,11 @@ export async function POST(request: Request) {
 Name:    ${name}
 Email:   ${email}
 Phone:   ${phone}
-Service: ${service}
+${address ? `Address: ${address}\n` : ""}Service: ${service}
 
 Message:
 ${message}`,
-      html: buildEmailHtml({ name, email, phone, service, message }),
+      html: buildEmailHtml({ name, email, phone, address, service, message }),
     });
 
     return NextResponse.json({ ok: true });
@@ -102,6 +104,7 @@ function buildEmailHtml(d: {
   name: string;
   email: string;
   phone: string;
+  address?: string;
   service: string;
   message: string;
 }) {
@@ -123,6 +126,7 @@ function buildEmailHtml(d: {
           ${row("Name", d.name)}
           ${row("Email", d.email)}
           ${row("Phone", d.phone)}
+          ${d.address ? row("Address", d.address) : ""}
           ${row("Service", d.service)}
         </table>
         <div style="margin-top:16px;padding:16px;background:#f0fdf4;border-radius:12px;border:1px solid #dcfce7;">

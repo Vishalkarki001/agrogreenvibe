@@ -6,9 +6,16 @@ import Image from "next/image";
 import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { COMPANY, NAV_LINKS, SOCIAL_LINKS } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
-import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from "@/components/ui/SocialIcons";
+import {
+  WhatsAppIcon,
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  YoutubeIcon,
+} from "@/components/ui/SocialIcons";
 
 const socials = [
+  { icon: WhatsAppIcon, href: SOCIAL_LINKS.whatsapp, label: "WhatsApp" },
   { icon: FacebookIcon, href: SOCIAL_LINKS.facebook, label: "Facebook" },
   { icon: InstagramIcon, href: SOCIAL_LINKS.instagram, label: "Instagram" },
   { icon: LinkedinIcon, href: SOCIAL_LINKS.linkedin, label: "LinkedIn" },
@@ -29,7 +36,7 @@ export default function Footer() {
           <div className="lg:pr-4">
             <Link href="/" className="flex items-center gap-3">
               <Image
-                src="/logo/logo.png"
+                src="/logo/logo.jpeg"
                 alt={`${COMPANY.shortName} logo`}
                 width={48}
                 height={48}
@@ -75,6 +82,15 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/feedback"
+                  className="inline-flex items-center gap-1.5 text-green-100/70 transition-colors hover:text-amber-400"
+                >
+                  <ArrowUpRight className="h-3.5 w-3.5 text-green-500" />
+                  Feedback
+                </Link>
+              </li>
             </ul>
           </div>
 

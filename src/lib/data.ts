@@ -34,9 +34,9 @@ import { COMPANY } from "./constants";
 // STATS — homepage counters
 // ---------------------------------------------------------------------------
 export const STATS: Stat[] = [
-  { value: "1,200+", label: "Projects Completed", icon: TreePine },
-  { value: "950+", label: "Happy Clients", icon: Smile },
-  { value: "15+", label: "Years of Experience", icon: CalendarDays },
+  { value: "18", label: "Projects Completed", icon: TreePine },
+  { value: "15", label: "Happy Clients", icon: Smile },
+  { value: "4", label: "Years of Experience", icon: CalendarDays },
   { value: "100%", label: "Eco-Friendly Work", icon: Leaf },
 ];
 

@@ -49,7 +49,7 @@ export default function Header() {
         {/* Logo + wordmark */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/logo/logo.png"
+            src="/logo/logo.jpeg"
             alt={`${COMPANY.shortName} logo`}
             width={48}
             height={48}

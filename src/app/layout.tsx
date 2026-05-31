@@ -3,6 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Chatbot from "@/components/sections/Chatbot";
 import { COMPANY } from "@/lib/constants";
 
 // Body font — clean aur readable
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     "Rudrapur landscaping",
     "Uttarakhand landscaping",
   ],
-  icons: { icon: "/logo/logo.png" },
+  icons: { icon: "/logo/logo.jpeg" },
   openGraph: {
     title: `${COMPANY.shortName} — Landscaping & Gardening Services`,
     description: COMPANY.description,
@@ -61,6 +62,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Chatbot />
       </body>
     </html>
   );

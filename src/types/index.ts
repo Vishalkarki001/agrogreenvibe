@@ -31,6 +31,12 @@ export interface Service {
   slug: string; // URL ke liye, jaise "landscaping"
   /** public/services/<imageFolder>/ — yahan se images auto-load hoti hain. */
   imageFolder: string;
+  /**
+   * Optional: featured (top) image override. Agar diya to ye image auto-sort
+   * wali pehli image ke jagah featured slot par dikhegi (high-quality image
+   * pin karne ke kaam aata hai).
+   */
+  featuredImage?: string;
   title: string;
   emoji: string;
   icon: LucideIcon;

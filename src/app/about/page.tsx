@@ -51,7 +51,7 @@ export default function AboutPage() {
             />
             <div className="absolute -bottom-6 -right-4 rounded-2xl bg-green-700 px-6 py-5 text-white shadow-lg">
               <p className="font-display text-3xl font-extrabold leading-none">
-                1,200+
+                18
               </p>
               <p className="mt-1 text-xs font-medium text-green-100">
                 Spaces transformed

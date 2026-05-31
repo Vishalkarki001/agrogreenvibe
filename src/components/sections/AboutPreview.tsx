@@ -10,7 +10,7 @@ import Reveal from "@/components/ui/Reveal";
 import { COMPANY } from "@/lib/constants";
 
 const points = [
-  "15+ years of hands-on landscaping experience",
+  "4 years of hands-on landscaping experience",
   "Eco-friendly, sustainable practices on every project",
   "Licensed experts and end-to-end project management",
   "Transparent pricing with no hidden costs",
@@ -47,7 +47,7 @@ export default function AboutPreview({ image1, image2 }: AboutPreviewProps) {
           </div>
           {/* Experience badge */}
           <div className="absolute -left-4 -top-4 rounded-2xl bg-amber-500 px-5 py-4 text-white shadow-lg">
-            <p className="font-display text-3xl font-extrabold leading-none">15+</p>
+            <p className="font-display text-3xl font-extrabold leading-none">4</p>
             <p className="mt-1 text-xs font-medium">Years of Trust</p>
           </div>
         </Reveal>

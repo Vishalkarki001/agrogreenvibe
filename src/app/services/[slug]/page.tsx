@@ -5,11 +5,12 @@ import { Check, ArrowRight, ArrowUpRight } from "lucide-react";
 import PageHero from "@/components/layout/PageHero";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
-import SmartImage from "@/components/ui/SmartImage";
+import { LightboxProvider, LightboxImage } from "@/components/ui/Lightbox";
 import ServiceGallery from "@/components/ui/ServiceGallery";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 import CTASection from "@/components/sections/CTASection";
+import WhatsAppPopup from "@/components/sections/WhatsAppPopup";
 import { SERVICES, getServiceBySlug } from "@/lib/services";
 import { getServiceImages } from "@/lib/serviceImages";
 
@@ -40,10 +41,20 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   // Folder se asli images uthao; na milein to data wale placeholders use karo.
   const real = getServiceImages(service.imageFolder);
-  const images =
+  let images =
     real.length > 0
       ? real.map((src, i) => ({ src, alt: `${title} project ${i + 1}` }))
       : gallery.map((g) => ({ src: g.src, alt: g.alt }));
+
+  // Agar featuredImage override diya hai to use front par pin karo (duplicate
+  // se bachne ke liye baki list se filter kar dete hain).
+  if (service.featuredImage) {
+    const fi = service.featuredImage;
+    images = [
+      { src: fi, alt: `${title} featured project` },
+      ...images.filter((img) => img.src !== fi),
+    ];
+  }
 
   const featured = images[0];
   const pool = images.slice(1);
@@ -56,7 +67,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   }
 
   return (
-    <>
+    <LightboxProvider images={images}>
       <PageHero
         eyebrow={`${emoji} Service`}
         title={title}
@@ -69,9 +80,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <Container>
           {featured && (
             <Reveal direction="zoom">
-              <SmartImage
+              <LightboxImage
                 src={featured.src}
                 alt={featured.alt}
+                index={0}
                 emoji={emoji}
                 className="aspect-video shadow-2xl shadow-green-900/15 lg:aspect-21/9"
                 sizes="(max-width: 1280px) 100vw, 1200px"
@@ -152,11 +164,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                     >
                       {pair.length === 2 ? (
                         <div className="grid grid-cols-2 gap-4">
-                          {pair.map((img) => (
-                            <SmartImage
+                          {pair.map((img, j) => (
+                            <LightboxImage
                               key={img.src}
                               src={img.src}
                               alt={img.alt}
+                              index={1 + i * 2 + j}
                               emoji={emoji}
                               className="aspect-4/5 shadow-xl shadow-green-900/10"
                               sizes="(max-width: 1024px) 50vw, 25vw"
@@ -164,9 +177,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                           ))}
                         </div>
                       ) : (
-                        <SmartImage
+                        <LightboxImage
                           src={pair[0].src}
                           alt={pair[0].alt}
+                          index={1 + i * 2}
                           emoji={emoji}
                           className="aspect-4/3 shadow-xl shadow-green-900/10"
                           sizes="(max-width: 1024px) 100vw, 50vw"
@@ -212,7 +226,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </Reveal>
 
             <div className="mt-14">
-              <ServiceGallery images={galleryImages} emoji={emoji} />
+              <ServiceGallery
+                images={galleryImages}
+                emoji={emoji}
+                startIndex={1 + showcaseImages.length}
+              />
             </div>
           </Container>
         </section>
@@ -249,7 +267,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       </section>
 
       <CTASection />
-    </>
+      {/* key={slug} se har naye service par WhatsAppPopup remount hota hai —
+          isliye har service page par 15 sec ke liye dobara dikhta hai. */}
+      <WhatsAppPopup key={slug} />
+    </LightboxProvider>
   );
 }
 

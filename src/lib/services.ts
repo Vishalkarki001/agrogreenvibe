@@ -30,6 +30,7 @@ import {
   Carrot,
   Salad,
   Mountain,
+  Home,
 } from "lucide-react";
 import type { Service } from "@/types";
 
@@ -49,6 +50,8 @@ export const SERVICES: Service[] = [
   {
     slug: "landscaping",
     imageFolder: "landscaping",
+    // High-quality image ko featured slot par pin karte hain
+    featuredImage: "/services/landscaping/image (11).jpeg",
     title: "Landscaping",
     emoji: "🌳",
     icon: Trees,
@@ -167,6 +170,8 @@ export const SERVICES: Service[] = [
   {
     slug: "parks",
     imageFolder: "mini_and_large_park",
+    // High-quality image ko featured slot par pin karte hain
+    featuredImage: "/services/mini_and_large_park/image (3).jpeg",
     title: "Mini & Large Parks",
     emoji: "🏞️",
     icon: Mountain,
@@ -339,7 +344,68 @@ export const SERVICES: Service[] = [
   },
 
   // -------------------------------------------------------------------------
-  // 6. OTHER GARDENING SERVICES
+  // 6. ARANYA COTTAGES
+  // -------------------------------------------------------------------------
+  {
+    slug: "aranya-cottages",
+    imageFolder: "aranya_cottages",
+    // High-quality image ko featured slot par pin karte hain (clearer dikhti hai)
+    featuredImage: "/services/aranya_cottages/image (1).webp",
+    title: "Aranya Cottages",
+    emoji: "🏡",
+    icon: Home,
+    tagline: "Crafting nature-inspired cottages and serene garden retreats.",
+    excerpt:
+      "Beautiful eco-friendly cottages and forest retreats — designed and built in harmony with the land they sit on.",
+    intro: [
+      "**Aranya Cottages** brings the calm of the forest right to your doorstep. From bespoke garden cottages and weekend retreats to nature-inspired guest cabins, we design and build serene living spaces that blend seamlessly with the landscape around them.",
+      "Every cottage is crafted with **sustainable materials**, thoughtful design and a deep respect for the environment — so you get a comfortable, beautiful escape that feels like a natural part of its surroundings.",
+    ],
+    highlights: [
+      {
+        title: "Bespoke Cottage Design",
+        description:
+          "Custom architectural plans tailored to your land, your taste and your idea of the perfect retreat.",
+        icon: Ruler,
+      },
+      {
+        title: "Eco-Friendly Materials",
+        description:
+          "Sustainably sourced wood, stone and natural finishes that age gracefully and tread lightly on the earth.",
+        icon: Leaf,
+      },
+      {
+        title: "Nature-Integrated Layouts",
+        description:
+          "Designs that frame views, capture sunlight and bring the garden inside through thoughtful openings.",
+        icon: Trees,
+      },
+      {
+        title: "Comfort & Privacy",
+        description:
+          "Cozy, well-insulated interiors with modern comforts — a true retreat from the everyday rush.",
+        icon: ShieldCheck,
+      },
+    ],
+    features: [
+      "Custom cottage architecture",
+      "Eco-friendly construction",
+      "Landscape integration",
+      "Interior finishing & decor",
+      "Outdoor decks & sit-outs",
+      "Turnkey project delivery",
+    ],
+    gallery: gallery("aranya-cottages", [
+      "Aranya cottage exterior",
+      "Cottage among trees",
+      "Wooden cottage facade",
+      "Cozy cottage interior",
+      "Outdoor cottage deck",
+    ]),
+  },
+
+  // -------------------------------------------------------------------------
+  // 7. OTHER GARDENING SERVICES
   // -------------------------------------------------------------------------
   {
     slug: "other-services",

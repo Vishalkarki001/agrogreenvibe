@@ -13,6 +13,17 @@ import Image from "next/image";
 import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
 
+export type ObjectPosition = "center" | "top" | "bottom" | "left" | "right";
+
+// Explicit static map taaki Tailwind purge break na ho.
+const POSITION_CLASS: Record<ObjectPosition, string> = {
+  center: "object-center",
+  top: "object-top",
+  bottom: "object-bottom",
+  left: "object-left",
+  right: "object-right",
+};
+
 interface SmartImageProps {
   src: string;
   alt: string;
@@ -26,6 +37,8 @@ interface SmartImageProps {
   label?: string;
   /** Border-radius classes (default rounded-2xl). Cards ke liye badal sakte hain. */
   rounded?: string;
+  /** Image crop position — `top` se face/subject upar dikhega (default `center`). */
+  objectPosition?: ObjectPosition;
   priority?: boolean;
   sizes?: string;
 }
@@ -38,6 +51,7 @@ export default function SmartImage({
   icon: Icon,
   label,
   rounded = "rounded-2xl",
+  objectPosition = "center",
   priority = false,
   sizes = "(max-width: 768px) 100vw, 33vw",
 }: SmartImageProps) {
@@ -55,7 +69,7 @@ export default function SmartImage({
           sizes={sizes}
           priority={priority}
           onError={() => setFailed(true)}
-          className="object-cover transition-transform duration-500 ease-out hover:scale-105"
+          className={`object-cover ${POSITION_CLASS[objectPosition]} transition-transform duration-500 ease-out hover:scale-105`}
         />
       ) : (
         // ---- Fallback placeholder (jab tak asli image na ho) ----

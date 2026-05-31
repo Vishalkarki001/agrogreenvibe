@@ -96,7 +96,7 @@ export default function Hero({ imageSrc }: HeroProps) {
               ))}
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400">
-              <strong className="font-bold text-slate-900 dark:text-white">950+</strong> happy clients across{" "}
+              <strong className="font-bold text-slate-900 dark:text-white">15</strong> happy clients across{" "}
               {COMPANY.city}
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function Hero({ imageSrc }: HeroProps) {
                 🌳
               </span>
               <div>
-                <p className="font-display text-xl font-extrabold text-slate-900 dark:text-white">1,200+</p>
+                <p className="font-display text-xl font-extrabold text-slate-900 dark:text-white">18</p>
                 <p className="text-xs text-slate-500 dark:text-slate-400">Projects done</p>
               </div>
             </div>

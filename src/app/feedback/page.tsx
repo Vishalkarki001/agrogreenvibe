@@ -6,9 +6,13 @@ import Reveal from "@/components/ui/Reveal";
 import FeedbackForm from "@/components/sections/FeedbackForm";
 
 export const metadata: Metadata = {
-  title: "Feedback",
+  title: "Share Your Feedback",
   description:
     "Share your feedback with Agro Greenvibe — we'd love to hear what you think about our work, our website, or anything else.",
+  alternates: { canonical: "/feedback" },
+  // Feedback form ka apna SEO value nahi hai — Google ko index karne se rokte
+  // hain taaki crawl budget asli service pages par lage.
+  robots: { index: false, follow: true },
 };
 
 const why = [

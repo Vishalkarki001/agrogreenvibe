@@ -3,18 +3,41 @@ import PageHero from "@/components/layout/PageHero";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
 import ContactForm from "@/components/sections/ContactForm";
+import JsonLd from "@/components/seo/JsonLd";
 import { COMPANY } from "@/lib/constants";
 import { CONTACT_DETAILS } from "@/lib/data";
+import { buildKeywords } from "@/lib/seo";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact — Free Landscaping Quote in Rudrapur & Haldwani",
   description:
-    "Get in touch with Agro Greenvibe for landscaping, gardening and green-space projects. Call, email or send us a message for a free quote.",
+    "Get in touch with Agro Greenvibe for landscaping, gardening and green-space projects in Rudrapur, Haldwani and across Uttarakhand. Free site visit and written quotation — call +91 88688 57255.",
+  keywords: buildKeywords(undefined, [
+    "landscaping quote Rudrapur",
+    "gardening contact Haldwani",
+    "free landscaping site visit",
+    "landscaping company phone number Rudrapur",
+  ]),
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    url: "/contact",
+    title: "Contact Agro Greenvibe — Free Landscaping Quote",
+    description:
+      "Call, WhatsApp or message us for a free site visit and quotation across Rudrapur, Haldwani and Uttarakhand.",
+  },
 };
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
+
       <PageHero
         eyebrow="Contact Us"
         title="Let's Grow Something Beautiful"

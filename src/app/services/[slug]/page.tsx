@@ -10,9 +10,15 @@ import ServiceGallery from "@/components/ui/ServiceGallery";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 import CTASection from "@/components/sections/CTASection";
+import FAQSection from "@/components/sections/FAQSection";
 import WhatsAppPopup from "@/components/sections/WhatsAppPopup";
+import JsonLd from "@/components/seo/JsonLd";
 import { SERVICES, getServiceBySlug } from "@/lib/services";
 import { getServiceImages } from "@/lib/serviceImages";
+import { faqsFor } from "@/lib/faqs";
+import { LANDING_PAGES } from "@/lib/landingPages";
+import { buildKeywords, PRIMARY_AREAS } from "@/lib/seo";
+import { breadcrumbSchema, serviceSchema } from "@/lib/schema";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -28,7 +34,26 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return { title: "Service Not Found" };
-  return { title: service.title, description: service.excerpt };
+
+  // Title me sheher ka naam — "landscaping in Rudrapur" jaise searches ke liye.
+  const cities = PRIMARY_AREAS.map((a) => a.name).join(" & ");
+  const title = `${service.title} in ${cities}`;
+  const description = `${service.excerpt} Serving Rudrapur, Haldwani and across Uttarakhand. Free site visit and quotation — call +91 88688 57255.`;
+  const url = `/services/${slug}`;
+
+  return {
+    title,
+    description,
+    keywords: buildKeywords(slug),
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title,
+      description,
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: title }],
+    },
+  };
 }
 
 export default async function ServiceDetailPage({ params }: PageProps) {
@@ -38,6 +63,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   const { title, tagline, intro, highlights, features, gallery, emoji } = service;
   const otherServices = SERVICES.filter((s) => s.slug !== slug);
+  const faqs = faqsFor(slug);
+  // Is service ke city-specific pages — topical internal linking se
+  // dono pages ko rank karne me madad milti hai.
+  const cityPages = LANDING_PAGES.filter((p) => p.serviceSlug === slug);
 
   // Folder se asli images uthao; na milein to data wale placeholders use karo.
   const real = getServiceImages(service.imageFolder);
@@ -68,6 +97,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   return (
     <LightboxProvider images={images}>
+      <JsonLd
+        data={[
+          serviceSchema(service),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+            { name: title, path: `/services/${slug}` },
+          ]),
+        ]}
+      />
+
       <PageHero
         eyebrow={`${emoji} Service`}
         title={title}
@@ -236,6 +276,45 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </section>
       )}
 
+      {/* City-wise pages — "landscaping in rudrapur" jaise searches ke liye */}
+      {cityPages.length > 0 && (
+        <section className="py-16 lg:py-20">
+          <Container>
+            <Reveal>
+              <SectionHeading
+                centered
+                eyebrow="Your city"
+                title={`${title} near you`}
+                subtitle={`See how we handle ${title.toLowerCase()} in your city — local conditions, costs and the questions people there ask us.`}
+              />
+            </Reveal>
+            <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
+              {cityPages.map((p, i) => (
+                <Reveal key={p.slug} delay={(i % 2) * 90}>
+                  <Link
+                    href={`/${p.slug}`}
+                    className="group flex h-full items-center gap-4 rounded-2xl border border-green-100 bg-green-50/60 p-5 transition-all hover:-translate-y-1 hover:border-green-200 hover:shadow-lg hover:shadow-green-900/5 dark:border-[#26332c] dark:bg-[#131d18]"
+                  >
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-xl shadow-sm dark:bg-[#1a241e]">
+                      {p.emoji}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-display font-bold text-slate-900 dark:text-white">
+                        {p.shortLabel}
+                      </span>
+                      <span className="mt-0.5 block text-xs text-slate-600 dark:text-slate-400">
+                        {p.city}, Uttarakhand
+                      </span>
+                    </span>
+                    <ArrowUpRight className="h-5 w-5 shrink-0 text-green-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
+
       {/* Other services */}
       <section className="bg-green-50/50 py-16 lg:py-20 dark:bg-[#131d18]">
         <Container>
@@ -265,6 +344,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </div>
         </Container>
       </section>
+
+      {/* Service-specific FAQs + FAQPage schema */}
+      <FAQSection
+        faqs={faqs}
+        idPrefix={`faq-${slug}`}
+        title={`${title} — Your Questions Answered`}
+        subtitle="The things clients in Rudrapur and Haldwani ask us most often before starting."
+      />
 
       <CTASection />
       {/* key={slug} se har naye service par WhatsAppPopup remount hota hai —

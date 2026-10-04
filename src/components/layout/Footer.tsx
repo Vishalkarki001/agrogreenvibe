@@ -6,6 +6,8 @@ import Image from "next/image";
 import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { COMPANY, NAV_LINKS, SOCIAL_LINKS } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
+import { LANDING_PAGES } from "@/lib/landingPages";
+import { AREA_NAMES } from "@/lib/seo";
 import {
   WhatsAppIcon,
   FacebookIcon,
@@ -151,6 +153,36 @@ export default function Footer() {
               <p>{COMPANY.hours.sunday}</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* ---- Area-wise pages: internal linking ka sabse important block ----
+           Google in landing pages ko tabhi value deta hai jab har page se unke
+           links jaate hain. Footer har page par hai, isliye yahi sahi jagah hai. */}
+      <div className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <h3 className="font-display text-base font-bold uppercase tracking-wide text-white">
+            Popular Searches
+          </h3>
+          <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm">
+            {LANDING_PAGES.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  href={`/${p.slug}`}
+                  className="text-green-100/70 transition-colors hover:text-amber-400"
+                >
+                  {p.shortLabel}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="mt-9 font-display text-base font-bold uppercase tracking-wide text-white">
+            Areas We Serve
+          </h3>
+          <p className="mt-4 text-sm leading-relaxed text-green-100/60">
+            {AREA_NAMES.join(" · ")} — and across Uttarakhand.
+          </p>
         </div>
       </div>
 

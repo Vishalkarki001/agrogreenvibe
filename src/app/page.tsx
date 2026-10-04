@@ -10,7 +10,9 @@ import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import ProcessSteps from "@/components/sections/ProcessSteps";
 import Testimonials from "@/components/sections/Testimonials";
 import CTASection from "@/components/sections/CTASection";
+import FAQSection from "@/components/sections/FAQSection";
 import { getServiceImages } from "@/lib/serviceImages";
+import { GENERAL_FAQS } from "@/lib/faqs";
 
 export default function HomePage() {
   // Landscaping folder se kuch images — hero aur about section ke liye.
@@ -25,6 +27,7 @@ export default function HomePage() {
       <WhyChooseUs />
       <ProcessSteps />
       <Testimonials />
+      <FAQSection faqs={GENERAL_FAQS} tinted idPrefix="faq-home" />
       <CTASection />
     </>
   );

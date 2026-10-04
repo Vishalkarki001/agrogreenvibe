@@ -8,14 +8,30 @@ import Reveal from "@/components/ui/Reveal";
 import StatsBar from "@/components/sections/StatsBar";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import CTASection from "@/components/sections/CTASection";
+import JsonLd from "@/components/seo/JsonLd";
 import { COMPANY } from "@/lib/constants";
 import { VALUES } from "@/lib/data";
 import { getServiceImages } from "@/lib/serviceImages";
+import { buildKeywords } from "@/lib/seo";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Agro Greenvibe — Landscaping Company in Rudrapur, Uttarakhand",
   description:
-    "Learn about Agro Greenvibe — a passionate team of landscapers and gardeners creating sustainable, beautiful green spaces across Uttarakhand.",
+    "Agro Greenvibe India Pvt. Ltd. has been designing and building green spaces since 2018. Meet the team behind landscaping, terrace gardens, parks and ponds across Rudrapur, Haldwani and Uttarakhand.",
+  keywords: buildKeywords(undefined, [
+    "about Agro Greenvibe",
+    "landscaping company Rudrapur",
+    "trusted gardeners Uttarakhand",
+    "landscape contractor Udham Singh Nagar",
+  ]),
+  alternates: { canonical: "/about" },
+  openGraph: {
+    url: "/about",
+    title: "About Agro Greenvibe — Landscaping Company in Rudrapur",
+    description:
+      "Designing and building green spaces across Uttarakhand since 2018 — landscaping, terrace gardens, parks, ponds and maintenance.",
+  },
 };
 
 const storyPoints = [
@@ -30,6 +46,13 @@ export default function AboutPage() {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "About Us", path: "/about" },
+        ])}
+      />
+
       <PageHero
         eyebrow="About Us"
         title="Growing Greener Spaces Since 2018"

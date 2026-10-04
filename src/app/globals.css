@@ -70,6 +70,17 @@ html {
   scroll-padding-top: 6rem;
 }
 
+/* Mobile par side-scroll band karo.
+   Decorative blur circles (-left-24, -right-20) aur Reveal ke slide-in
+   transforms (translateX(-36px)) viewport se bahar nikalte hain, jisse phone
+   par page thoda sa horizontally scroll hota tha.
+   `clip` use kiya hai `hidden` ki jagah — `hidden` scroll container bana deta
+   hai jisse sticky header kaam karna band kar deta hai. */
+html,
+body {
+  overflow-x: clip;
+}
+
 /* Sundar custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

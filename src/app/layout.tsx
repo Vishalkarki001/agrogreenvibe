@@ -45,6 +45,11 @@ export const metadata: Metadata = {
   publisher: COMPANY.name,
   category: "Landscaping & Gardening",
   alternates: { canonical: "/" },
+  // Google Search Console ownership verification.
+  // Ye tag hataana mat — hatane par Search Console access chala jayega.
+  verification: {
+    google: "s_NFcgpfehwJNglU0Y21WMUV1ktuppsGR_S1K7tOUSo",
+  },
   // PWA — manifest.ts se /manifest.webmanifest generate hota hai.
   manifest: "/manifest.webmanifest",
   appleWebApp: {
